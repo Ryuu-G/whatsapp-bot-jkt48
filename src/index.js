@@ -43,26 +43,57 @@ antiCrash
       console.log("Bot siap digunakan!");
     });
 
+    const cooldowns = {
+      birthday: 0,
+      news: 0,
+      live: 0,
+      schedule: 0,
+    };
+
     client.on("message", async (message) => {
+      const now = Date.now();
       if (message.body === "!birthday") {
+        if (now - cooldowns.birthday < 30000) {
+          await message.reply("Silakan tunggu 30 detik sebelum menggunakan command ini lagi.");
+          return;
+        }
+        cooldowns.birthday = now;
         await handleBirthdayCommand(message, client);
       }
     });
 
     client.on("message", async (message) => {
+      const now = Date.now();
       if (message.body.startsWith("!news")) {
+        if (now - cooldowns.news < 30000) {
+          await message.reply("Silakan tunggu 30 detik sebelum menggunakan command ini lagi.");
+          return;
+        }
+        cooldowns.news = now;
         await handleNewsCommand(message, client);
       }
     });
 
     client.on("message", async (message) => {
+      const now = Date.now();
       if (message.body === "!live") {
+        if (now - cooldowns.live < 30000) {
+          await message.reply("Silakan tunggu 30 detik sebelum menggunakan command ini lagi.");
+          return;
+        }
+        cooldowns.live = now;
         await handleLiveCommand(message, client);
       }
     });
 
     client.on("message", async (message) => {
+      const now = Date.now();
       if (message.body === "!schedule") {
+        if (now - cooldowns.schedule < 30000) {
+          await message.reply("Silakan tunggu 30 detik sebelum menggunakan command ini lagi.");
+          return;
+        }
+        cooldowns.schedule = now;
         await handleScheduleCommand(message, client);
       }
     });
