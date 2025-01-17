@@ -12,7 +12,7 @@ function formatBirthdayMessage(birthdays) {
     message += `*${member.name}*\n`;
     message += `📅 ${member.birthday}\n`;
     message += `🎂 Ulang tahun ke-${age}\n`;
-    message += `🔗 [Profile Member](https://jkt48.com${member.profileLink})\n\n`;
+    message += `🔗 https://jkt48.com${member.profileLink}\n\n`;
   });
 
   return message;
