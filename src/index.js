@@ -98,6 +98,20 @@ antiCrash
       }
     });
 
+    client.on("message", async (message) => {
+      const now = Date.now();
+      if (message.body === "!help") {
+        if (now - cooldowns.schedule < 30000) {
+          await message.reply(
+            "List commands.\n\n- !birthday (**Untuk mendapatkan list birthday member yang akan datang**)\n- !live (**Untuk mendapatkan list member yang sedang live**)\n- !news (**Untuk mendapatkan list news terbaru JKT48**)\n- !news :id (**Untuk mendapatkan detail news**)\n- !schedule (**Untuk mendapatkan list schedule theater JKT48**)"
+          );
+          return;
+        }
+        cooldowns.schedule = now;
+        await handleScheduleCommand(message, client);
+      }
+    });
+
     client.initialize();
   })
   .catch((error) => {
