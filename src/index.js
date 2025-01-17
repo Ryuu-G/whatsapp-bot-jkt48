@@ -48,13 +48,13 @@ antiCrash
       news: 0,
       live: 0,
       schedule: 0,
+      help: 0,
     };
 
     client.on("message", async (message) => {
       const now = Date.now();
       if (message.body === "!birthday") {
         if (now - cooldowns.birthday < 30000) {
-          await message.reply("Silakan tunggu 30 detik sebelum menggunakan command ini lagi.");
           return;
         }
         cooldowns.birthday = now;
@@ -66,7 +66,6 @@ antiCrash
       const now = Date.now();
       if (message.body.startsWith("!news")) {
         if (now - cooldowns.news < 30000) {
-          await message.reply("Silakan tunggu 30 detik sebelum menggunakan command ini lagi.");
           return;
         }
         cooldowns.news = now;
@@ -78,7 +77,6 @@ antiCrash
       const now = Date.now();
       if (message.body === "!live") {
         if (now - cooldowns.live < 30000) {
-          await message.reply("Silakan tunggu 30 detik sebelum menggunakan command ini lagi.");
           return;
         }
         cooldowns.live = now;
@@ -90,7 +88,6 @@ antiCrash
       const now = Date.now();
       if (message.body === "!schedule") {
         if (now - cooldowns.schedule < 30000) {
-          await message.reply("Silakan tunggu 30 detik sebelum menggunakan command ini lagi.");
           return;
         }
         cooldowns.schedule = now;
@@ -101,13 +98,10 @@ antiCrash
     client.on("message", async (message) => {
       const now = Date.now();
       if (message.body === "!help") {
-        if (now - cooldowns.schedule < 30000) {
-          await message.reply(
-            "Silakan tunggu 30 detik sebelum menggunakan command ini lagi."
-          );
+        if (now - cooldowns.help < 30000) {
           return;
         }
-        cooldowns.schedule = now;
+        cooldowns.help = now;
         await message.reply(
           "List commands.\n\n- !birthday (**Untuk mendapatkan list birthday member yang akan datang**)\n- !live (**Untuk mendapatkan list member yang sedang live**)\n- !news (**Untuk mendapatkan list news terbaru JKT48**)\n- !news :id (**Untuk mendapatkan detail news**)\n- !schedule (**Untuk mendapatkan list schedule theater JKT48**)"
         );
