@@ -60,7 +60,7 @@ function formatLiveStreams(idnStreams, showroomStreams) {
     message += `*Nama*: ${stream.creator.name}\n`;
     message += `*Platform*: IDN Live\n`;
     message += `*Mulai Live*: ${stream.live_at}\n`;
-    message += `🔗 [Tonton Live](<${link}>)\n\n`;
+    message += `🔗 ${link}\n\n`;
   });
 
   showroomStreams.forEach((stream) => {
@@ -68,7 +68,7 @@ function formatLiveStreams(idnStreams, showroomStreams) {
     message += `*Nama*: ${stream.main_name}\n`;
     message += `*Platform*: Showroom\n`;
     message += `*Mulai Live*: ${stream.started_at}\n`;
-    message += `🔗 [Tonton Live](<${link}>)\n\n`;
+    message += `🔗 ${link}\n\n`;
   });
 
   return message;
